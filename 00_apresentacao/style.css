@@ -1,0 +1,80 @@
+body{
+    background-color: rgb(247, 235, 235);
+}
+header{
+    background: linear-gradient(to right, rgba(160, 24, 19, 0.986), red);/*usa para fazer um degrade com o back do elemento no caso é do reder*/
+    text-align: center;
+    min-height: 100%;/*para definir a altura minima pra o header*/
+    padding-top: 15px;/*a margin para não fical encostado encima*/
+    
+}
+
+header > h2{
+    text-shadow: 1px 3px rgba(0, 0, 0, 0.256);/*para fazer sombra só no h2 dentro do reder*/
+    
+    font-size: 3em;/* para o texto ficar maior (mais preciso 3 vezes)*/
+
+    color:aliceblue;
+}
+
+div.little{
+    color: goldenrod;
+
+    text-shadow: 1px 3px rgba(0, 0, 0, 0.256);
+}
+
+img{
+    height: 150px;    width: 150px;/* tamanho igual para ficar quadra que fica redonto, se for retangular fica oval*/
+
+    border-radius: 50%; /* para retondar a imagem*/
+
+    object-fit: cover; /*para não ficar distocida a imagem*/
+
+    border: 5px solid crimson;/*configuração para mostra a borda*/
+
+}
+
+main{
+    display: flex;
+
+    gap: 15px;
+    
+    background-color: aliceblue;
+    
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.256);
+
+    width: 900px;
+
+    padding: 10px;
+
+    margin: auto;
+
+    text-align: justify;
+}
+
+aside{
+    flex: 1;
+    margin-left: 15px;
+}
+
+section{
+    flex: 3;
+}
+
+section > h4{
+    font-size: 1.1em;
+    text-align: center;
+}
+
+footer{
+    margin-top: 15px;
+
+    padding: 10px;
+
+    background: linear-gradient(to left, rgba(160, 24, 19, 0.986), red);
+
+    border-radius: 16px;
+    
+}
