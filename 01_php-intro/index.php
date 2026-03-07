@@ -8,7 +8,8 @@
  <?php 
  $nome = "Caio Mario Zachesky Junior";
  $curso = "Técnico em Informática - IFPR";
- $atuacao = "Estudande do IFPR Campus Ponta Grossa"
+ $atuacao = "Estudande do IFPR Campus Ponta Grossa";
+ $pagina_atual = "inicio";
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,11 +20,13 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-   <?php include 'includes/cabecalho.php'; ?>
+   
     <div class="hero">
         <h1><?php echo $nome; ?></h1>
-        <p><?php echo $atuacao; ?> | <?php echo $curso ?></p>
+        <p><?php echo $atuacao; ?> | <?php echo $curso; ?></p>
     </div>
+    <?php include 'includes/cabecalho.php'; ?>
+    
     <div class="container">
         <h1>Olá jovens gafanhoto novamente, ainda me chamo <?php echo $nome; ?> Esse é o meu portfólio</h1>    
         <p>Esta página foi desenvolvida usado PHP em:</p>

@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(247, 235, 235);
+}
+
+
+
+main{
+   
+
+    gap: 15px;
+    
+    background-color: aliceblue;
+    
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.256);
+
+    width: 900px;
+
+    padding: 10px;
+
+    margin: auto;
+
+    text-align: justify;
+}
+
