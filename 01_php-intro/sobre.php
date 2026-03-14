@@ -5,22 +5,24 @@
  Data       : 07/03/2026
  Repositório: https://github.com/CaioZ-Stark/2026-DWII
 --> 
-<?php  $pagina_atual = "sobre"; ?>
-<?php include 'includes/cabecalho.php'; ?>
+<?php  
+    $pagina_atual = "sobre"; 
+    $nome = "Caio Mario Zachesky Junior";
+    $caminho_raiz ="../";
+    $titulo_pagina = "Portfólio - {$nome}";
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Sobre mim</title>
+    <?php include '../includes/cabecalho.php'; ?>
 </head>
 <body>
     
 
 
 <main>
-<h1>Sobre mim</h1>
+<h1 class="titulo-secao">Sobre mim</h1>
 
 <p>
 Meu nome é Caio e estou no 3° ano do Técnico em Informática do IFPR Campus Ponta Grossa.
@@ -54,5 +56,6 @@ Nesta página vou falar sobre meus gostos e meus planos para o futuro.
 <p>No momento estou fazendo um projeto com alguns colegas para criar um mod de Minecraft.</p>
 
 </main>
+    <?php include '../includes/rodape.php' ?>
 </body>
 </html>

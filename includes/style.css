@@ -1,0 +1,215 @@
+/* ════════════════════════════════════════════════════════════
+ * ARQUIVO    : includes/style.css
+ * Disciplina : Desenvolvimento Web II (2026-DWII)
+ * Aula       : 04 — PHP para Web: Formulários, GET e POST
+ * Autor      : Caio Mario Zachesky Junior
+ * Escopo     : Estilos globais compartilhados por todas as aulas
+ * ════════════════════════════════════════════════════════════
+ *
+ * Um único arquivo CSS para todo o projeto.
+ * Para mudar o visual do menu, do rodapé ou dos formulários:
+ * edite AQUI — a mudança reflete em todas as páginas.
+ */
+ /* ── Reset e base ──────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6ea;
+  color: #010000;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Layout ─────────────────────────────────────── */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* ── Títulos de seção ────────────────────────────── */
+h1.titulo-secao { color: #9d3b3b; margin-bottom: 24px; }
+
+/* ── Navegação ───────────────────────────────────── */
+nav {
+  background: rgb(253, 2, 2);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: bold;
+}
+/* Classe aplicada via PHP ao item da página atual */
+nav a.ativo {
+  color: #f0b341;
+  border-bottom: 2px solid #f0b341;
+}
+
+/* ── Cards de conteúdo ───────────────────────────── */
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid #3b579d;
+}
+.card h3 { margin-top: 0; color: #2a4080; margin-bottom: 12px; }
+.card p  { margin-bottom: 0; color: #374151; }
+
+/* ── Formulários ─────────────────────────────────── */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+label:first-of-type { margin-top: 0; }
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+textarea { resize: vertical; }
+
+button[type="submit"] {
+  margin-top: 20px;
+  background: #3b579d;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+button[type="submit"]:hover { background: #2a4080; }
+
+/* ── Alertas ─────────────────────────────────────── */
+/* Exibidos pelo PHP quando há erros de validação */
+.alerta-erro {
+  background: #fce8e8;
+  border-left: 4px solid #cf1c21;
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+.alerta-erro h3 { color: #cf1c21; margin-top: 0; }
+
+/* Exibido pelo PHP quando o envio foi bem-sucedido */
+.alerta-sucesso {
+  background: #e9f5ea;
+  border-left: 4px solid #3ba34a;
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+.alerta-sucesso h3 { color: #3ba34a; margin-top: 0; }
+
+/* ── Rodapé ──────────────────────────────────────── */
+footer {
+  background: #010000;
+  color: #6b7280;
+  text-align: center;
+  padding: 20px;
+  margin-top: 60px;
+  font-size: 14px;
+  line-height: 1.8;
+  border-radius: 5px;
+}
+div .box-info{
+    margin-top: 0;
+}
+p .instrucao{
+    font-size: 14px;
+    color: #373751
+}
+div .box-info > div{
+    background: #010000;
+    color: #e6a3d5; 
+    padding:10px 16px; 
+    border-radius: 6px;
+    margin-top: 10px; 
+    font-family:'Courier New', Courier, monospace; 
+    font-size: 13px; 
+    line-height:1.8;
+}
+p .descricao{
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 8px;
+}
+p .tempo{
+    text-align: right;
+    font-size: 13px;
+    color: #9ca3af;
+    margin-top: 8px;
+}
+.hero{
+    background: linear-gradient(135deg,#f32727,#7c1010);
+    color:white;
+    text-align: center;
+    padding: 60px 20px;
+}
+.hero h1{
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+.hero p{
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+.container{
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+main{
+   
+
+    gap: 15px;
+    
+    background-color: aliceblue;
+    
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.256);
+
+    width: 900px;
+
+    padding: 10px;
+
+    margin: auto;
+
+    text-align: justify;
+
+    margin-top: 10px;
+}
+.ajuste{
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.256);
+
+    width: 450;
+    
+    padding: 10px;
+
+    margin: auto;
+
+    text-align: justify;
+
+    margin-top: 10px;
+}

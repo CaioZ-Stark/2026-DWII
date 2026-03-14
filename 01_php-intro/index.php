@@ -6,18 +6,17 @@
  Repositório: https://github.com/CaioZ-Stark/2026-DWII
 --> 
  <?php 
+ $caminho_raiz = "../";
  $nome = "Caio Mario Zachesky Junior";
  $curso = "Técnico em Informática - IFPR";
  $atuacao = "Estudande do IFPR Campus Ponta Grossa";
  $pagina_atual = "inicio";
+ $titulo_pagina = "Portfólio - {$nome}";
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portidólio - <?php echo $nome; ?></title>
-    <link rel="stylesheet" href="estilo.css">
+    <?php include '../includes/cabecalho.php'; ?>
 </head>
 <body>
    
@@ -25,7 +24,7 @@
         <h1><?php echo $nome; ?></h1>
         <p><?php echo $atuacao; ?> | <?php echo $curso; ?></p>
     </div>
-    <?php include 'includes/cabecalho.php'; ?>
+    
     
     <div class="container">
         <h1>Olá jovens gafanhoto novamente, ainda me chamo <?php echo $nome; ?> Esse é o meu portfólio</h1>    
@@ -33,6 +32,6 @@
             <strong><?php echo date("d/m/Y \à\s H:i:s") ?> </strong>
     </div>
 
-    <?php include 'includes/rodape.php'; ?>
+    <?php include '../includes/rodape.php'; ?>
 </body>
  </html>
