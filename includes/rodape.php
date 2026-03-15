@@ -17,4 +17,5 @@ $autor = isset($nome) ? htmlspecialchars($nome) : "Portfólio";
     &copy;<?php echo date("Y"); ?>
     | Desenvolvido com PHP
     | IFPR - Ponta Grossa
+    | <a href="../index.php" target="_blank">Abrir menu de navegação </a>
 </footer>

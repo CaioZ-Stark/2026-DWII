@@ -12,6 +12,23 @@
  */
  /* ── Reset e base ──────────────────────────────── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Página de confirmação ──────────────────────────────── */
+.containerconfirmacao { 
+  text-align: center; 
+  margin-top: 60px;
+ }
+.confirmacao-icone { 
+  font-size: 60px;
+   margin: 0;
+   }
+.confirmacao-titulo { 
+  color: #3ba34a;
+   margin: 16px 0 8px; 
+  }
+.confirmacao-texto { 
+  font-size: 16px; 
+  color: #374151; 
+  margin-bottom: 24px; }
 body {
   font-family: Arial, sans-serif;
   background: #f3f4f6ea;
