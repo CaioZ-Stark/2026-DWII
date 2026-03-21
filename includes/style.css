@@ -230,3 +230,55 @@ main{
 
     margin-top: 10px;
 }
+div .flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a .detalhes{
+  color: #9e0101;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+}
+a .voltar{
+  color: #9d3b3b;
+  font-weight: bold;
+}
+.flex2{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+h1 .flex2{
+  color: #9b0202;
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+span .flex2{
+  background-color: #e8edf5;
+  color: #9b0202;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+p .flex2{
+  font-size: 16px;
+  margin: 16px 0;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+td{
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  
+}
