@@ -15,20 +15,28 @@ if(isset($_SESSION['usuario'])){
     header('Location: login.php');
     exit;
 }
+if(!isset($_SESSION['tentativas'])){
+    $_SESSION['tentativas'] = 0;
+}
+if(!isset($_SESSION['bloqueado_ate'])){
+    $_SESSION['bloqueado_ate'] = 0;
+}
+
 
 $USUARIO_VALIDO = 'admin';
 $SENHA_VALIDA = 'dwii2026';
 
 $erro = '';
 $login = '';
-$_SESSION['tentativas'] = 0;
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $login = trim($_POST['usuario'] ?? '');
-    $senha = trim($_POST['senha'] ?? '');
-    if(isset($_SESSION['bloqueado_ate']) && time() < $_SESSION['bloqueado_ate']){
+if(time() < $_SESSION['bloqueado_ate']){
         $erro = 'Você excedeu o limide de erros espere 60 segundos';
     }
-    else{
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && time() > $_SESSION['bloqueado_ate']){
+    $login = trim($_POST['usuario'] ?? '');
+    $senha = trim($_POST['senha'] ?? '');
+    
+    
     if($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA){
         //Credenciais corretas - novo ID de sessão após login (segurança)
         session_regenerate_id(true);
@@ -41,13 +49,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else{
         // Mensagem genérica - nunca diga qual campo está errado
         $erro = 'Usuario ou senha incorretos.';
-        $_SESSION['tentativas'] = 1;
-        if($_SESSION['tentativas'] == 3){
+        $_SESSION['tentativas']++;
+        if($_SESSION['tentativas'] >= 3){
             $_SESSION['bloqueado_ate'] = time()+60;
-            $_SESSION['tentativas'] = 0;
+            
         }
     }
-    }
+    
 }
 $titulo_pagina = 'Login - Área Restrita';
 $caminha_raiz = '../';

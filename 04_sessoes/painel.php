@@ -9,10 +9,8 @@ Autor      : Caio Mario Zachesky Junior
    
 require_once __DIR__ .'/includes/auth.php';
 requer_login();
-if(!isset($_SESSION['flash'])){
-    echo '<div class="alerta-sucesso">'. htmlspecialchars($_SESSION['flash']).'</div>';
-    $_SESSION['flash'] = null;
-}
+$meg = $_SESSION['flash'];
+unset($_SESSION['flash']);
 
 
 if (!isset($_SESSION['visitas'])) {
@@ -33,6 +31,11 @@ $pagina_atual = '';
 <body>
    
     <div class="container">
+        <?php 
+if($meg){
+    echo '<div class="alerta-sucesso">'. htmlspecialchars($meg).'</div>';
+}
+ ?>
         <div class="alerta-sucesso">
            
            
