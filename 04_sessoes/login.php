@@ -8,6 +8,7 @@ Data       : 23/03/2026
 */
 //session_start() Deve ser a primeira coisa do arquivo
 session_start();
+require_once __DIR__ .'/includes/auth.php';
 redirecionar_se_logado();
 // Se já estiver logado, ir direto ao painel
 if(isset($_SESSION['usuario'])){
