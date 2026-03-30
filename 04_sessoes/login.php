@@ -8,7 +8,7 @@ Data       : 23/03/2026
 */
 //session_start() Deve ser a primeira coisa do arquivo
 session_start();
-
+redirecionar_se_logado();
 // Se já estiver logado, ir direto ao painel
 if(isset($_SESSION['usuario'])){
     header('Location: login.php');
@@ -20,21 +20,32 @@ $SENHA_VALIDA = 'dwii2026';
 
 $erro = '';
 $login = '';
-
+$_SESSION['tentativas'] = 0;
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $login = trim($_POST['usuario'] ?? '');
     $senha = trim($_POST['senha'] ?? '');
-
+    if(isset($_SESSION['bloqueado_ate']) && time() < $_SESSION['bloqueado_ate']){
+        $erro = 'Você excedeu o limide de erros espere 60 segundos';
+    }
+    else{
     if($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA){
         //Credenciais corretas - novo ID de sessão após login (segurança)
         session_regenerate_id(true);
         $_SESSION['usuario'] = $login;
         $_SESSION['logado_em'] = date('d/m/Y \à\s H:i');
+        $_SESSION['senha'] = $senha;
+        $_SESSION['flash'] = 'Bem-vindo, '. $_SESSION['usuario'].'!';
         header('Location: painel.php');
         exit;
     } else{
         // Mensagem genérica - nunca diga qual campo está errado
         $erro = 'Usuario ou senha incorretos.';
+        $_SESSION['tentativas'] = 1;
+        if($_SESSION['tentativas'] == 3){
+            $_SESSION['bloqueado_ate'] = time()+60;
+            $_SESSION['tentativas'] = 0;
+        }
+    }
     }
 }
 $titulo_pagina = 'Login - Área Restrita';

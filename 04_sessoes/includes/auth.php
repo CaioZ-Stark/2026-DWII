@@ -28,4 +28,13 @@ function usuario_logado(): string
 {
     return $_SESSION['usuario'] ?? '';
 }
+function redirecionar_se_logado():void{
+      if (session_status() === PHP_SESSION_NONE){
+        session_start();// iniciar se ainda não foi iniciada
+    }
+     if(isset($_SESSION['usuario'])){
+        header('Location: painel.php');
+        exit;
+    }
+}
 ?>
