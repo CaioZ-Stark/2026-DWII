@@ -9,7 +9,7 @@ Autor      : Caio Mario Zachesky Junior
    
 require_once __DIR__ .'/includes/auth.php';
 requer_login();
-$meg = $_SESSION['flash'];
+$meg = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
 
