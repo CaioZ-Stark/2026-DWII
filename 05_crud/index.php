@@ -17,11 +17,26 @@ require_once __DIR__.'/includes/conexao.php';
 
 // --- Busca todos os projetos ordenados pelo mais recente ---
 $pdo = conectar();
-$stmt = $pdo->query('Select * from projetos order by criado_em DESC');
-$projetos = $stmt->fetchAll();
+$sql = 'Select * from projetos';
+
 
 // ---Mensaegem de sucesso após cadastro ---
 $cadastroOk = isset($_GET['cadastro']) && $_GET['cadastro'] === 'ok';
+
+$conticao = [] ;
+$variavel = [];
+$termo = trim($_GET['buscar'] ?? '');
+if(!empty($termo)){
+    $conticao[] = 'nome like :ter';
+    $variavel[':ter'] = '%' . $termo . '%';
+    $sql .= ' WHERE ' . implode(' AND ', $conticao);
+}
+$sql .= ' Order By criado_em DESC';
+
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($variavel);
+$projetos = $stmt->fetchAll();
 
 $titulo_pagina = 'Meus Projetos - Portfólio';
 $caminho_raiz = '../';
@@ -38,6 +53,11 @@ $pagina_atual = '';
         <h1 class="titulo-secao" style="margin: 0;">💼 Meus Projetos</h1>
         <a href="cadastrar.php" class="btn-primerio">➕ Novo Projeto</a>
     </div>
+    <form action="index.php" method="GET">
+        
+        <input type="text" name="buscar" placeholder="Pesquisar por nome ">
+        <button style="background-color: red;" type="submit">Filtrar</button>
+    </form>
 
     <?php if ($cadastroOk): ?>
         <div class="alerta-sucesso">
@@ -83,6 +103,9 @@ $pagina_atual = '';
                             >🔗 Ver no GitHub
                         </a>
                     <?php endif; ?>
+                    <a href="detalhe.php?id=<?php echo $projeto['id']; ?>" class="detalhes">
+                    Ver detalhes ¬
+                    </a>
                 </div>
             <?php endforeach; ?>
          </div>
