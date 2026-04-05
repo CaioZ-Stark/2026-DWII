@@ -26,9 +26,18 @@ $cadastroOk = isset($_GET['cadastro']) && $_GET['cadastro'] === 'ok';
 $conticao = [] ;
 $variavel = [];
 $termo = trim($_GET['buscar'] ?? '');
+$tecnologias = trim($_GET['tecnologias'] ?? '');
+
+if(!empty($tecnologias)){
+    $conticao[] = 'tecnologias like :tec';
+    $variavel[':tec'] = '%' . $tecnologias. '%';
+}
 if(!empty($termo)){
-    $conticao[] = 'nome like :ter';
+    $conticao[] = ' nome like :ter';
     $variavel[':ter'] = '%' . $termo . '%';
+    
+}
+if (!empty($conticao)) {
     $sql .= ' WHERE ' . implode(' AND ', $conticao);
 }
 $sql .= ' Order By criado_em DESC';
@@ -54,7 +63,16 @@ $pagina_atual = '';
         <a href="cadastrar.php" class="btn-primerio">➕ Novo Projeto</a>
     </div>
     <form action="index.php" method="GET">
-        
+         <select name="tecnologias"> <option value=""></option> 
+            <?php $sql2 = 'Select Distinct tecnologias from projetos';
+             $stmt2 = $pdo->prepare($sql2);
+             $stmt2->execute(); 
+             $projetos2 = $stmt2->fetchAll();
+             foreach ($projetos2 as $s):
+            ?>
+            <option value="<?php echo htmlspecialchars($s['tecnologias']); ?>"><?php echo htmlspecialchars($s['tecnologias']); ?></option> 
+            <?php endforeach; ?>
+         </select>
         <input type="text" name="buscar" placeholder="Pesquisar por nome ">
         <button style="background-color: red;" type="submit">Filtrar</button>
     </form>
