@@ -60,6 +60,10 @@ function menu_class($item, $atual){
  <?php echo menu_class("Painel", $pagina_atual);?>>
  💹Painel
 </a>
+<a href="<?php echo $caminho_raiz; ?>05_crud/index.php"
+ <?php echo menu_class("Lista", $pagina_atual);?>>
+ 💼Lista de Projetos
+</a>
 
 
 </nav>
