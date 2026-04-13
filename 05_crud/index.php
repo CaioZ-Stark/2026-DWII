@@ -27,7 +27,12 @@ $conticao = [] ;
 $variavel = [];
 $termo = trim($_GET['buscar'] ?? '');
 $tecnologias = trim($_GET['tecnologias'] ?? '');
+$ano = trim($_GET['ano'] ?? '');
 
+if(!empty($ano)){
+    $conticao[] = 'ano = :a';
+    $variavel[':a'] = $ano;
+}
 if(!empty($tecnologias)){
     $conticao[] = 'tecnologias like :tec';
     $variavel[':tec'] = '%' . $tecnologias. '%';
@@ -70,6 +75,9 @@ $pagina_atual = '';
         <a href="cadastrar.php" class="btn-primerio">➕ Novo Projeto</a>
     </div>
     <form action="index.php" method="GET">
+        <label>
+            Filtro de tecnologia do projeto
+        </label>
          <select name="tecnologias"> <option value=""></option> 
             <?php $sql2 = 'Select Distinct tecnologias from projetos';
              $stmt2 = $pdo->prepare($sql2);
@@ -80,6 +88,21 @@ $pagina_atual = '';
             <option value="<?php echo htmlspecialchars($s['tecnologias']); ?>"><?php echo htmlspecialchars($s['tecnologias']); ?></option> 
             <?php endforeach; ?>
          </select>
+         <label>
+            Filtro de ano do projeto
+        </label>
+         <select name="ano"> <option value=""></option> 
+            <?php $sql3 = 'SELECT DISTINCT ano FROM projetos ORDER BY ano DESC';
+             $stmt3 = $pdo->prepare($sql3);
+             $stmt3->execute(); 
+             $projetos3 = $stmt3->fetchAll();
+             foreach ($projetos3 as $s):
+            ?>
+            <option value="<?php echo htmlspecialchars($s['ano']); ?>"><?php echo htmlspecialchars($s['ano']); ?></option> 
+            <?php endforeach; ?>
+         </select>
+
+        
         <input type="text" name="buscar" placeholder="Pesquisar por nome ">
         <button style="background-color: red;" type="submit">Filtrar</button>
     </form>
