@@ -48,9 +48,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($nome === '' || $descricao === '' || $tecnologias === ''){
         $erro = 'Preencha todos os campos obrigatórios.';
     }
-   // if($ano > date('Y') ){ 
-      //  $erro = 'Ano ultrapassou o ano que estavamos.';
-   // }
+   if($ano > date('Y') ){ 
+      $erro = 'Ano ultrapassou o ano que estavamos.';
+   }
 
     if($erro === ''){
         // where id = :id é obritoria.
