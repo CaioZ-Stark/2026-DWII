@@ -49,20 +49,24 @@ if($meg){
         <div class="card">
             <h3>📊 Painel de controle</h3>
             <p>Este conteúdo só é visível para usuários autenticados.
-            </p>
-            <p>Nas próximas aulas este painel terá funcionalidades reais (CRUD).</p>
+        
         </div>
-        <p style="margin-top: 24; text-align: center;">
+     
+            </p>
+             <p style="margin-top: 24; text-align: center;">
             <a href="logout.php"
                 style="background: red; color:aliceblue; padding: 10px 24px; border-radius: 6px; text-decoration: none; 
                 font-weight: bold;">🚪 Sair</a>
             <a href="perfil.php"
                 style="background: blue; color:aliceblue; padding: 10px 24px; border-radius: 6px; text-decoration: none; 
                 font-weight: bold;">💌 Detalhes da conta</a>
+            <a href="../05_crud/index.php" class="btn-primario">
+                🗃 Gerenciar Projetos
+            </a>
         </p>
-
 
     </div>
 
+<?php require_once __DIR__ .'/../includes/rodape.php'; ?>
 </body>
 </html>

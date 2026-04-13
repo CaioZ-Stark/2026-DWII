@@ -34,7 +34,7 @@ $stmt->execute([':id' => $id]);
 $projeto = $stmt->fetch();
 
 if(!$projeto){
-     header('Location: index.php?erro=id_invalido');
+     header('Location: index.php?erro=nao_encontra');
     exit;
 }
 

@@ -106,7 +106,7 @@ $pagina_atual = '';
         </div>
     <?php  endif; ?>
 
-     <?php if ($erroMsg === 'nao_encontrado'): ?>
+     <?php if ($erroMsg === 'nao_encontra'): ?>
         <div class="alerta-erro">
             <p style="margin: 0;">
                Projeto não encontrado. Ele pode já ter sido removido.

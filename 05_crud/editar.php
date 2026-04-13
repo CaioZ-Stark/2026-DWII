@@ -24,6 +24,7 @@ if($id <= 0){
     exit;
 }
 
+
 $pdo = conectar();
 $stmt = $pdo->prepare('SELECT * FROM projetos WHERE id = :id');
 $stmt->execute([':id' => $id]);
@@ -47,8 +48,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($nome === '' || $descricao === '' || $tecnologias === ''){
         $erro = 'Preencha todos os campos obrigatórios.';
     }
+   // if($ano > date('Y') ){ 
+      //  $erro = 'Ano ultrapassou o ano que estavamos.';
+   // }
 
-    if($erro = ''){
+    if($erro === ''){
         // where id = :id é obritoria.
         // Sem ele, TODOS os registros da tabela seriam alterados.
         $sql = 'UPDATE projetos
@@ -65,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             ':tecnologias' => $tecnologias,
             ':link_github' => $link_github  !== '' ? $link_github : null,
             ':ano' => $ano,
-            ':id' => $id
+            ':id' => $id,
         ]);
 
         header('Location: index.php?editado=ok');
