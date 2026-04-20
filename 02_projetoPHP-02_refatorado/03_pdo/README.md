@@ -1,6 +1,6 @@
 # Portfólio Dinâmico — Aula 03 DWII
 
-Catálogo de ligagens de programação
+Catálogo de linguagens de programação
 
 ## Como executar
 
@@ -13,8 +13,8 @@ Acesse: http://localhost:8001
 
 ## Estrutura de arquivos
 
-- index.php        — página inicial com apresentação das ligagens
-- detalhe.php      — página de detalhasmento de cara ligagens
+- index.php        — página inicial com apresentação das linguagens
+- detalhe.php      — página de detalhasmento de cada linguagens
 - sql/             — 
 - setup.sql        — Banco ultilizado
 - includes/
