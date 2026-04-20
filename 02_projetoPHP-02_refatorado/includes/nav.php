@@ -36,7 +36,7 @@ $logado = isset($_SESSION['usuario']);
   <?php echo menu_class("inicio", $pagina_atual);?>>
   🏯 Inicio 
 </a>
-  <a href="<?php echo $caminho_raiz; ?>01_php-intro/sobre.php" 
+  <a href="<?php echo $caminho_raiz; ?>sobre.php" 
   <?php echo menu_class("sobre", $pagina_atual);?>>
   🤴 Sobre 
  </a>
