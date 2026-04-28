@@ -10,8 +10,8 @@
  */
 
 
-if(session_start() === PHP_SESSION_NONE){
-    session_start();
+if(session_status() === PHP_SESSION_NONE){
+    session_status() ;
 }
 
 $pagina_atual = 'inicio';
@@ -41,7 +41,7 @@ include __DIR__ . '/includes/cabecalho.php';
   <!-- Foto de perfil -->
   <div class="foto-container">
     <img
-      src="<?php echo $caminho_raiz; ?>00_apresentacao/imgs/foto-perfil.jpg"
+      src="<?php echo $caminho_raiz; ?>includes/imgs/foto-perfil.jpg"
       alt="Foto de <?php echo htmlspecialchars($nome); ?>"
       class="foto-perfil">
   </div>

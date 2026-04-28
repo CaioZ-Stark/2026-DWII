@@ -8,9 +8,12 @@
  * ════════════════════════════════════════════════════════════
  *
  */
+if(session_status() === PHP_SESSION_NONE){
+    session_status() ;
+}
 $nome = "Caio Mario Zachesky Junior";
 $pagina_atual = "contato";
-$caminho_raiz = "../";
+$caminho_raiz = "./";
 $titulo_pagina = "Contato";
 
 $nome_visitante = htmlspecialchars($_GET['nome'] ?? 'visitante');
@@ -21,7 +24,7 @@ $vcarac = mb_strlen($carac, 'UTF-8');
 
 
 
-<?php include '../includes/cabecalho.php';?>
+<?php include 'includes/cabecalho.php';?>
 
 
 <div class="containerconfirmacao">
@@ -32,4 +35,4 @@ $vcarac = mb_strlen($carac, 'UTF-8');
     <p class="confirmacao-texto">Sua mensagem foi recebida com assunto <b><?php echo $rique ?></b> e numeno de caracteris usados <b><?php echo $vcarac ?></b>. Entrarei em contato em breve.</p>
     <a href="contato.php" class="btn">¬ Enviar outra mensagem.</a>
 </div>
-<?php include '../includes/rodape.php';?>
+<?php include 'includes/rodape.php';?>

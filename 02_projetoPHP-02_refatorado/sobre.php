@@ -5,7 +5,10 @@
  Data       : 07/03/2026
  Repositório: https://github.com/CaioZ-Stark/2026-DWII
 --> 
-<?php  
+<?php
+    if(session_status() === PHP_SESSION_NONE){
+    session_status() ;
+}
     $pagina_atual = "sobre"; 
     $nome = "Caio Mario Zachesky Junior";
     $caminho_raiz ="./";

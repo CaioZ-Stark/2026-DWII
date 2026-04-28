@@ -12,11 +12,14 @@
  *
  *
  */
+if(session_status() === PHP_SESSION_NONE){
+    session_status() ;
+}
 
 // Variaveis do Template
 $nome = "Caio Mario Zachesky Junior";
 $pagina_atual = "contato";
-$caminho_raiz = "../";
+$caminho_raiz = "./";
 $titulo_pagina = "Contato";
 $caracter =  0; 
 //Estado inicial
@@ -57,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){ // verifica se a mensagem foi enviada
     }
 }
 ?>
-<?php include '../includes/cabecalho.php'; ?>
+<?php include __DIR__ . '/includes/cabecalho.php'; ?>
 <div class="container">
     <h1 class="titulo-secao">📬 Formulário de Contato</h1>
 
@@ -113,7 +116,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){ // verifica se a mensagem foi enviada
             });
 </script>
 
-<?php 
 
 
-include '../includes/rodape.php'; ?>
+<?php include __DIR__ . '/includes/rodape.php'; ?>
