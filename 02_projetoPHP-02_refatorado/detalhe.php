@@ -1,21 +1,25 @@
 <?php
-$caminho_raiz = '../';
+if(session_status() === PHP_SESSION_NONE) session_start();
 
-require_once 'includes/conexao.php';
+$caminho_raiz = './';
+
+require_once __DIR__ . '/includes/conexao.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if(!$id){
+if(!$id || $id <= 0){
     header('Location: 404.php');
     exit;
 }
 
-$stmt = $pdo->prepare('select * from tecnologias where id = :id');
+$pdo = conectar();
+
+$stmt = $pdo->prepare("select * from tecnologias where id = :id AND status = 'ativo' LIMIT 1");
 $stmt->execute(['id'=> $id]);
 $tec = $stmt->fetch();// retorna uma linha do arry ou false se n aver
 
 if (!$tec){
-    header('Location: index.php');
+    header('Location: catalogo.php');
     exit;
 }
 
@@ -25,11 +29,11 @@ $pagina_atual = "catalogo";
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <?php include 'includes/cab_pdo.php'; ?>
+    <?php include __DIR__ . '/includes/cabecalho.php'; ?>
 </head>
 <body>
     <div class="container">
-        <a href="index.php" class="voltar">Voltar ao catálogo</a>
+        <a href="catalogo.php" class="btn-secundario" style="display: inline-block; margin-bottom: 20px;">Voltar ao catálogo</a>
         <div class="card" style="margin-top: 20px;">
             <div class="flex2">
                 <h1 class="flex2"><?php echo htmlspecialchars($tec['nome']);?></h1>
@@ -53,6 +57,6 @@ $pagina_atual = "catalogo";
             
         </div>
     </div>
-    <?php include 'includes/rod_pdo.php'; ?>
+    <?php include __DIR__ . '/includes/rodape.php';?>
 </body>
 </html>

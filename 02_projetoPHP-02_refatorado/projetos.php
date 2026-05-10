@@ -18,7 +18,11 @@ if(session_status() === PHP_SESSION_NONE){
 require_once __DIR__ . '/includes/conexao.php';
 
 $pdo = conectar();
-$stmt = $pdo->query('SELECT * FROM projetos ORDER BY criado_em DESC');
+$stmt = $pdo->query(
+    "SELECT * FROM projetos
+       WHERE status = 'publicado'
+       ORDER BY criado_em DESC"
+);
 $projetos = $stmt->fetchAll();
 
 ?>
