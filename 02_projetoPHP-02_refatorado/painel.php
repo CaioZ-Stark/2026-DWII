@@ -19,14 +19,14 @@ if (!isset($_SESSION['visitas'])) {
 $_SESSION['visitas']++;
 
 $titulo_pagina = 'Painel - Área Restrita';
-$caminho_raiz = '../';
+$caminho_raiz = './';
 $pagina_atual = '';
 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <?php require_once __DIR__ .'/../includes/cabecalho.php'  ?>
+    <?php require_once __DIR__ .'/includes/cabecalho.php'  ?>
 </head>
 <body>
    
@@ -49,8 +49,9 @@ if($meg){
         <div class="card">
             <h3>📊 Painel de controle</h3>
             <p>Este conteúdo só é visível para usuários autenticados.
-        
+            <p>Sejá muito bem-vindo, Mr/Mrs/Ms.<strong><?= htmlspecialchars(usuario_atual()) ?> </strong>!</p>
         </div>
+       
      
             </p>
              <p style="margin-top: 24; text-align: center;">
@@ -60,13 +61,11 @@ if($meg){
             <a href="perfil.php"
                 style="background: blue; color:aliceblue; padding: 10px 24px; border-radius: 6px; text-decoration: none; 
                 font-weight: bold;">💌 Detalhes da conta</a>
-            <a href="../05_crud/index.php" class="btn-primario">
-                🗃 Gerenciar Projetos
-            </a>
+            <p>Em breve, esta página listará seus projetos para edição (a ser implementado na <strong>Aula 13 - Refatoração Parte V </strong>).</p>
         </p>
 
     </div>
 
-<?php require_once __DIR__ .'/../includes/rodape.php'; ?>
+<?php require_once __DIR__ .'/includes/rodape.php'; ?>
 </body>
 </html>

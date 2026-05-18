@@ -6,13 +6,13 @@ Arquivo    : 04_sessoes/login.php
 Autor      : Caio Mario Zachesky Junior 
 Data       : 23/03/2026
 */
-//session_start() Deve ser a primeira coisa do arquivo
-session_start();
+
+require_once __DIR__ . '/includes/conexao.php';
 require_once __DIR__ .'/includes/auth.php';
-redirecionar_se_logado();
+
 // Se já estiver logado, ir direto ao painel
-if(isset($_SESSION['usuario'])){
-    header('Location: login.php');
+if(usuario_logado()){
+    header('Location: painel.php');
     exit;
 }
 if(!isset($_SESSION['tentativas'])){
@@ -23,8 +23,7 @@ if(!isset($_SESSION['bloqueado_ate'])){
 }
 
 
-$USUARIO_VALIDO = 'admin';
-$SENHA_VALIDA = 'dwii2026';
+
 
 $erro = '';
 $login = '';
@@ -33,38 +32,57 @@ if(time() < $_SESSION['bloqueado_ate']){
     }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && time() > $_SESSION['bloqueado_ate']){
-    $login = trim($_POST['usuario'] ?? '');
-    $senha = trim($_POST['senha'] ?? '');
+    $login = trim($_POST['login'] ?? '');
+    $senha = $_POST['senha'] ?? '';
     
+    if($login === '' || $senha === ''){
+        $erro= 'Infome usuário e senha.';
+    }else{
+        $pdo = conectar();
+        $stmt = $pdo->prepare(
+            "SELECT id, login, senha FROM usuarios WHERE login = :login AND status = 'ativo' LIMIT 1");
+            $stmt->execute([':login' => $login]);
+            $usuario = $stmt->fetch();
     
-    if($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA){
+    if($usuario  && password_verify($senha, $usuario['senha'])){
         //Credenciais corretas - novo ID de sessão após login (segurança)
         session_regenerate_id(true);
-        $_SESSION['usuario'] = $login;
-        $_SESSION['logado_em'] = date('d/m/Y \à\s H:i');
-        $_SESSION['senha'] = $senha;
-        $_SESSION['flash'] = 'Bem-vindo, '. $_SESSION['usuario'].'!';
+        $_SESSION['usuario'] = $usuario['login'];
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['bloqueado_ate'] = 0;
+        $_SESSION['tentativas']=0;
+        $_SESSION['logado_em'] = date('d/m/Y H:i:s');
+        $log = $pdo->prepare("INSERT INTO logs (tabela_afetada, registro_id, acao, usuario_login, detalhes) VALUES ('usuarios', :id, 'LOGIN', :login, 'Login bem-sucedido')");
+        $log ->execute([
+            ':id' => $usuario['id'],
+            ':login'=> $usuario['login'],
+        ]);
         header('Location: painel.php');
-        exit;
-    } else{
-        // Mensagem genérica - nunca diga qual campo está errado
+        exit;    
+        }else{
+        $log = $pdo->prepare(
+            "INSERT INTO logs (tabela_afetada, registro_id, acao, usuario_login, detalhes) VALUES ('usuarios', 0 , 'LOGIN_FAIL', :login,'Credenciais inválidas') "
+        );
+        $log->execute([':login' => $login]);
         $erro = 'Usuario ou senha incorretos.';
         $_SESSION['tentativas']++;
         if($_SESSION['tentativas'] >= 3){
             $_SESSION['bloqueado_ate'] = time()+60;
             
         }
+    } 
+
     }
     
 }
 $titulo_pagina = 'Login - Área Restrita';
-$caminha_raiz = '../';
+$caminha_raiz = './';
 $pagina_atual = '';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <?php require_once __DIR__ . '/../includes/cabecalho.php'; ?>
+    <?php require_once __DIR__ . '/includes/cabecalho.php'; ?>
 </head>
 <body>
     <div class="container" style="max-width: 420;">
@@ -85,14 +103,13 @@ $pagina_atual = '';
             <label>Usuário:</label>
             <input
              type="text"
-             name="usuario" 
-             value="<?php echo htmlspecialchars($login); ?>"
-             autocomplete="username">
+             name="login" 
+             autocomplete="username" required >
             <label>Senha:</label>
             <input 
             type="password" 
             name="senha" 
-            autocomplete="current-password"><br>
+            autocomplete="current-password" required><br>
             <button type="submit">Entrar</button>
         </form>
         <p style="text-align: center; margin-top: 20px; font-size: 13px; color: #6b7280;">
@@ -100,6 +117,6 @@ $pagina_atual = '';
         </p>
     </div>
 </div>
-<?php require_once __DIR__ .'/../includes/rodape.php' ?>
+<?php require_once __DIR__ .'/includes/rodape.php' ?>
 </body>
 </html>

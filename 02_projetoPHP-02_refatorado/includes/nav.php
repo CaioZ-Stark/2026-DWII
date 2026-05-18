@@ -54,7 +54,7 @@ $logado = isset($_SESSION['usuario']);
 </a>
 
 <?php if($logado): ?>
-<a href="<?php echo $caminho_raiz; ?>04_sessoes/painel.php"
+<a href="<?php echo $caminho_raiz; ?>painel.php"
  <?php echo menu_class("Painel", $pagina_atual);?>>
  💹Painel
 </a>
@@ -62,12 +62,12 @@ $logado = isset($_SESSION['usuario']);
  <?php echo menu_class("Lista", $pagina_atual);?>>
  💼Lista de Projetos
 </a>
-<a href="<?php echo $caminho_raiz; ?>04_sessoes/logout.php"
+<a href="<?php echo $caminho_raiz; ?>logout.php"
 <?php echo menu_class("Sair", $pagina_atual);?>>
  👍Sair
 </a>
 <?php else: ?>
-<a href="<?php echo $caminho_raiz; ?>04_sessoes/login.php"<?php echo menu_class("Login", $pagina_atual); ?>>
+<a href="<?php echo $caminho_raiz; ?>login.php"<?php echo menu_class("Login", $pagina_atual); ?>>
   😎 Login
 </a>
 <?php endif; ?>
