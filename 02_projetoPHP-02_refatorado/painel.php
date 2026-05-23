@@ -61,7 +61,9 @@ if($meg){
             <a href="perfil.php"
                 style="background: blue; color:aliceblue; padding: 10px 24px; border-radius: 6px; text-decoration: none; 
                 font-weight: bold;">💌 Detalhes da conta</a>
-            <p>Em breve, esta página listará seus projetos para edição (a ser implementado na <strong>Aula 13 - Refatoração Parte V </strong>).</p>
+            <p>
+                <a href="admin.php" class="btn-primario">Gerenciar projetos</a>
+            </p>
         </p>
 
     </div>

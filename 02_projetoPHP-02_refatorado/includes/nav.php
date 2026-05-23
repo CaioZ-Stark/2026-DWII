@@ -58,10 +58,7 @@ $logado = isset($_SESSION['usuario']);
  <?php echo menu_class("Painel", $pagina_atual);?>>
  💹Painel
 </a>
-<a href="<?php echo $caminho_raiz; ?>05_crud/index.php"
- <?php echo menu_class("Lista", $pagina_atual);?>>
- 💼Lista de Projetos
-</a>
+
 <a href="<?php echo $caminho_raiz; ?>logout.php"
 <?php echo menu_class("Sair", $pagina_atual);?>>
  👍Sair
