@@ -186,6 +186,7 @@ function registrar_log(PDO $pdo, string $acao, int $registro_id, string $detalhe
                         </option>
                     <?php endforeach; ?>
                 </select>
+                
             </form>
 
             <?php if (empty($projetos)): ?>
@@ -207,10 +208,19 @@ function registrar_log(PDO $pdo, string $acao, int $registro_id, string $detalhe
                                     <?php echo htmlspecialchars($p['nome']); ?>
                                 </td>
                                 <td style="text-align: center;"><?php echo (int) $p['ano']; ?></td>
-                                <td style="text-align: center;"><?php echo ucfirst($p['status']); ?></td>
-                                <td>
+                                <?php if($p['status'] === 'publicado'): ?>
+                                    <td style="text-align: center; color: green"><?php echo ucfirst($p['status']); ?></td>
+                                <?php endif; ?>
+                                <?php if($p['status'] === 'rascunho'): ?>
+                                    <td style="text-align: center; color:#6b7280"><?php echo ucfirst($p['status']); ?></td>
+                                <?php endif; ?>
+                                <?php if($p['status'] === 'arquivado'): ?>
+                                    <td style="text-align: center; color:red"><?php echo ucfirst($p['status']); ?></td>
+                                <?php endif; ?>
+                                    <td>
                                     <a href="admin.php?editar=<?php echo (int) $p['id']; ?>" class="btn-secundario">Editar</a>
                                     <?php if ($p['status'] !== 'arquivado'): ?>
+
                                         <form action="admin.php" method="post" style="display: inline;" onsubmit="return confirm('Arquivar este projeto?');">
                                             <input type="hidden" name="acao" value="arquivar">
                                             <input type="hidden" name="id" value="<?php echo (int) $p['id']; ?>">
